@@ -1,6 +1,6 @@
 # Java com Kafka
 
-Criação de um CRUD para poder criar, alterar e excluir clientes, utilizando um Resp API. O projeto também criar um producer e consumer em kafka para poder fazer executar o CRUD também.
+Criação de um CRUD para poder criar, alterar e excluir clientes, utilizando um API Rest. O projeto também criar um producer e consumer em kafka para poder fazer executar o CRUD também.
 
 Utilizar:
 
