@@ -137,11 +137,11 @@ Body (json):
 
 ### Receber exclusão pela mensageria
 
-O serivço de mensageria ira ler as solicitações e irá executar o os serviõs solicitaods para atualizar no banco de dados.
+O serviço de mensageria ira ler as solicitações e irá executar as solicitações de atualização no banco de dados.
 
 ## Observação
 
-O projeto também roda executando por intermédio de uma IDE, basta abrir o projeto na sua IDE preferencial, mas necessita que antes suba um container de rabbitmq, executando o comando abaixo:
+O projeto também roda executando por intermédio de uma IDE, basta abrir o projeto na sua IDE preferencial, mas necessita que antes suba os containers, executando o comando abaixo:
 
 ```
 ./scripts/startContainerParcial.sh
