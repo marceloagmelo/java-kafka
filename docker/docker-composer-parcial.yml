@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  zookeeper:
+    image: bitnami/zookeeper:3.9.3
+    hostname: zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+  kafka:
+    image: bitnami/kafka:3.9.0
+    hostname: kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    depends_on:
+      - zookeeper
+  mysql:
+    image: mysql:8.0.25
+    platform: linux/amd64
+    hostname: mysql
+    container_name: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: teste-kafka
+      MYSQL_ROOT_PASSWORD: "12345"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    command: --character-set-server=utf8 --collation-server=utf8_general_ci --character-set-filesystem=utf8 --lower-case-table-names=0 --max_allowed_packet=100M
+  adminer:
+    image: adminer
+    hostname: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - 7070:8080
