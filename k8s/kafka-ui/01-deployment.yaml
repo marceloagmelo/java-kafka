@@ -19,11 +19,15 @@ spec:
           image: provectuslabs/kafka-ui
           ports:
             - containerPort: 8080
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: POD_NAME
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
-            - name: KAFKA_SERVER
+            - name: KAFKA_CLUSTERS_0_NAME
+              value: "teste"
+            - name: KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS
               value: kafka-service:9092
+            - name: KAFKA_CLUSTERS_0_ZOOKEEPER
+              value: "zookeeper-service:2181"
