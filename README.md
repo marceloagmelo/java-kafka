@@ -162,8 +162,8 @@ O serviço de mensageria ira ler as solicitações e irá executar as solicitaç
 
 _startContainersParcial_: Sobe os seguintes containers para rodar localmente:
 
-- Zookeeper.
-- Kafka.
+- Zookeeper
+- Kafka
 - Mysql
 - Adminer
 
@@ -171,8 +171,8 @@ _removeContainersParcial_: Derrubar os containers parciais
 
 _startContainers_: Sobe os seguintes containers para rodar localmente em containers docker:
 
-- Zookeeper.
-- Kafka.
+- Zookeeper
+- Kafka
 - Mysql
 - Adminer
 - Producer
@@ -182,8 +182,8 @@ _removeContainers_: Derrubar os containers
 
 _publishKubernetes_: Sobe os seguintes containers para rodar no cluster kubernetes:
 
-- Zookeeper.
-- Kafka.
+- Zookeeper
+- Kafka
 - Mysql
 - Adminer
 - Producer
@@ -196,7 +196,7 @@ _removeKubernetes_: Derrubar os containers no cluster kubernetes
 O projeto também roda executando por intermédio de uma IDE, basta abrir o projeto na sua IDE preferencial, mas necessita que antes suba os containers, executando o comando abaixo:
 
 ```
-./scripts/startContainerParcial.sh
+./scripts/startContainersParcial.sh
 ```
 
 E executar as aplicações pela IDE e acessar os containers
