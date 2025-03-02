@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: "traefik"
   rules:
-  - host: javakafka.kafka-ui.marceloagmelo.net
+  - host: javakafka.kafkaui.marceloagmelo.net
     http:
       paths:
       - path: /
