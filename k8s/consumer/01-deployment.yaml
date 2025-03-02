@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consumer
+  labels:
+    app: consumer
+spec:
+  selector:
+    matchLabels:
+      app: consumer
+  template:
+    metadata:
+      labels:
+        app: consumer
+    spec:
+      containers:
+        - name: consumer
+          image: marceloagmelo/java-kafka-consumer:1.0.0.RELEASE
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: KAFKA_SERVER
+              value: "kafka-service:9092"
+            - name: PRODUCER_ENDPOINT
+              value: "http://producer-service:8080/clientes"

@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: producer
+  labels:
+    app: producer
+spec:
+  selector:
+    matchLabels:
+      app: producer
+  template:
+    metadata:
+      labels:
+        app: producer
+    spec:
+      containers:
+        - name: producer
+          image: marceloagmelo/java-kafka-producer:1.0.0.RELEASE
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MYSQL_HOST
+              value: mysql-service:3306
+            - name: MYSQL_USER
+              value: "root"
+            - name: MYSQL_PASS
+              value: "12345"
+            - name: MYSQL_DATABASE
+              value: "teste-kafka"
+            - name: KAFKA_SERVER
+              value: kafka-service:9092

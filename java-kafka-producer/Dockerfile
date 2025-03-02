@@ -24,6 +24,7 @@ WORKDIR /app
 # Copy the binary built in the 1st stage
 COPY --from=build /app/target/java-kafka-producer-0.0.1-SNAPSHOT.jar ./
 
-CMD ["java", "-jar", "java-kafka-producer-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "-XX:+PrintFlagsFinal", "-Xmx256m", "-Xms256m", "java-kafka-producer-0.0.1-SNAPSHOT.jar"]
+
 
 EXPOSE 8080

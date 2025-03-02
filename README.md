@@ -32,9 +32,9 @@ Listar:
 
 - Listar os clientes cadastrados.
 
-## Início
+## Containers
 
-Exeuctar o seguinte comando:
+Para rodar em containers executar o seguinte comando:
 
 ```
 ./scripts/startContainers.sh
@@ -45,6 +45,25 @@ Irão subir os containers e um de apoio:
 - Adminer: Aplicação web para administrar o banco de dados
 
 > http://localhost:7070
+
+    Servidor: mysql
+    Usuário: root
+    Senha: 12345
+    Banco de Dados: teste-kafka
+
+## Kubernetes
+
+Para rodar em containers no kubernetes executar o seguinte comando:
+
+```
+./scripts/startKubernetes.sh
+```
+
+Irão subir os containers e um de apoio:
+
+- Adminer: Aplicação web para administrar o banco de dados
+
+> http://javakafka.adminer.marceloagmelo.net
 
     Servidor: mysql
     Usuário: root
@@ -138,6 +157,39 @@ Body (json):
 ### Receber exclusão pela mensageria
 
 O serviço de mensageria ira ler as solicitações e irá executar as solicitações de atualização no banco de dados.
+
+## Scripts
+
+_startContainerParcial_: Sobe os seguintes containers para rodar localmente:
+
+- Zookeeper.
+- Kafka.
+- Mysql
+- Adminer
+
+_removeContainerParcial_: Derrubar os containers parciais
+
+_startContainer_: Sobe os seguintes containers para rodar localmente em containers docker:
+
+- Zookeeper.
+- Kafka.
+- Mysql
+- Adminer
+- Producer
+- Consumer
+
+_removeContainer_: Derrubar os containers
+
+_publishKubernetes_: Sobe os seguintes containers para rodar no cluster kubernetes:
+
+- Zookeeper.
+- Kafka.
+- Mysql
+- Adminer
+- Producer
+- Consumer
+
+_removeKubernetes_: Derrubar os containers no cluster kubernetes
 
 ## Observação
 

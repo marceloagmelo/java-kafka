@@ -20,7 +20,7 @@ services:
     environment:
       - KAFKA_BROKER_ID=1
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
@@ -29,7 +29,6 @@ services:
       - app_network
   mysql:
     image: mysql:8.0.25
-    platform: linux/amd64
     hostname: mysql
     container_name: mysql
     restart: always
@@ -51,17 +50,17 @@ services:
       - 7070:8080
     networks:
       - app_network
-  java-kafka-producer:
-    image: java-kafka-producer
+  producer:
+    image: marceloagmelo/java-kafka-producer:1.0.0.RELEASE
     build:
       context: ../java-kafka-producer
       dockerfile: Dockerfile
-    container_name: java-kafka-producer
+    container_name: producer
     restart: always
     ports:
       - "8080:8080"
     environment:
-      MYSQL_HOST: database
+      MYSQL_HOST: mysql
       MYSQL_DATABASE: teste-kafka
       MYSQL_USER: root
       MYSQL_PASS: 12345
@@ -71,15 +70,17 @@ services:
       - kafka
     networks:
       - app_network
-  java-kafka-consumer:
-    image: java-kafka-consumer
+  consumer:
+    image: marceloagmelo/java-kafka-consumer:1.0.0.RELEASE
+    platform: linux/amd64
     build:
       context: ../java-kafka-consumer
       dockerfile: Dockerfile
-    container_name: java-kafka-consumer
+    container_name: consumer
     restart: always
     environment:
       KAFKA_SERVER: kafka:9092
+      PRODUCER_ENDPOINT: producer:8080
     depends_on:
       - kafka
     networks:
