@@ -2,21 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: producer
+  name: kafka-ui
   labels:
-    app: producer
+    app: kafka-ui
 spec:
   selector:
     matchLabels:
-      app: producer
+      app: kafka-ui
   template:
     metadata:
       labels:
-        app: producer
+        app: kafka-ui
     spec:
       containers:
-        - name: producer
-          image: marceloagmelo/java-kafka-producer:1.0.0.RELEASE
+        - name: kafka-ui
+          image: provectuslabs/kafka-ui
           ports:
             - containerPort: 8080
           imagePullPolicy: Always
@@ -25,13 +25,5 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
-            - name: MYSQL_HOST
-              value: mysql-service:3306
-            - name: MYSQL_USER
-              value: root
-            - name: MYSQL_PASS
-              value: "12345"
-            - name: MYSQL_DATABASE
-              value: teste-kafka
             - name: KAFKA_SERVER
               value: kafka-service:9092

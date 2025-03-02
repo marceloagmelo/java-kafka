@@ -10,6 +10,11 @@ awk 'FNR==1 {print "---"}{print}' k8s/kafka/*.yaml | envsubst > kub-app.yaml
 cat kub-app.yaml
 kubectl apply -f kub-app.yaml -n java-kafka
 
+echo "Publicando kafka-ui no kubernetes..."
+awk 'FNR==1 {print "---"}{print}' k8s/kafka-ui/*.yaml | envsubst > kub-app.yaml
+cat kub-app.yaml
+kubectl apply -f kub-app.yaml -n java-kafka
+
 echo "Publicando mysql no kubernetes..."
 awk 'FNR==1 {print "---"}{print}' k8s/mysql/*.yaml | envsubst > kub-app.yaml
 cat kub-app.yaml
