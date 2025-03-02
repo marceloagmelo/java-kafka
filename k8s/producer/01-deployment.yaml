@@ -26,7 +26,7 @@ spec:
                 fieldRef:
                   fieldPath: metadata.name
             - name: MYSQL_HOST
-              value: mysql-service:3306
+              value: mysql-service
             - name: MYSQL_USER
               value: root
             - name: MYSQL_PASS
