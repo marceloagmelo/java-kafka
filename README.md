@@ -160,16 +160,16 @@ O serviço de mensageria ira ler as solicitações e irá executar as solicitaç
 
 ## Scripts
 
-_startContainerParcial_: Sobe os seguintes containers para rodar localmente:
+_startContainersParcial_: Sobe os seguintes containers para rodar localmente:
 
 - Zookeeper.
 - Kafka.
 - Mysql
 - Adminer
 
-_removeContainerParcial_: Derrubar os containers parciais
+_removeContainersParcial_: Derrubar os containers parciais
 
-_startContainer_: Sobe os seguintes containers para rodar localmente em containers docker:
+_startContainers_: Sobe os seguintes containers para rodar localmente em containers docker:
 
 - Zookeeper.
 - Kafka.
@@ -178,7 +178,7 @@ _startContainer_: Sobe os seguintes containers para rodar localmente em containe
 - Producer
 - Consumer
 
-_removeContainer_: Derrubar os containers
+_removeContainers_: Derrubar os containers
 
 _publishKubernetes_: Sobe os seguintes containers para rodar no cluster kubernetes:
 
