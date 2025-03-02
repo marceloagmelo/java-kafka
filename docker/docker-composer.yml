@@ -95,7 +95,7 @@ services:
     restart: always
     environment:
       KAFKA_SERVER: kafka:9092
-      PRODUCER_ENDPOINT: producer:8080/clientes
+      PRODUCER_ENDPOINT: http://producer:8080/clientes
     depends_on:
       - producer
     networks:
