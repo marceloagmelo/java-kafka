@@ -74,6 +74,18 @@ Irão subir os containers e um de apoio:
     Senha: 12345
     Banco de Dados: teste-kafka
 
+- Kafka-UI: Aplicação web para administrar o kafka
+
+> http://javakafka.kafkaui.marceloagmelo.net
+
+## Observação
+
+Precisa atualizaro arquivo /etc/hosts com os seguintes dados:
+
+```
+IP_CLUSTER javakafka.kafkaui.marceloagmelo.net javakafka.adminer.marceloagmelo.net javakafka.producer.marceloagmelo.net
+```
+
 ## _Serviços_
 
 ## Cliente
