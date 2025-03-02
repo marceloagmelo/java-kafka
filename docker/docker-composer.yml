@@ -27,6 +27,21 @@ services:
       - zookeeper
     networks:
       - app_network
+  kafka-ui:
+    image: provectuslabs/kafka-ui
+    container_name: kafka-ui
+    depends_on:
+      - kafka
+      - zookeeper
+    ports:
+      - "8081:8080"
+    restart: always
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=alura
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
+      - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
+    networks:
+      - app_network
   mysql:
     image: mysql:8.0.25
     hostname: mysql
@@ -80,9 +95,9 @@ services:
     restart: always
     environment:
       KAFKA_SERVER: kafka:9092
-      PRODUCER_ENDPOINT: producer:8080
+      PRODUCER_ENDPOINT: producer:8080/clientes
     depends_on:
-      - kafka
+      - producer
     networks:
       - app_network
 networks:

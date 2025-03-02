@@ -24,7 +24,7 @@ public class ClienteService {
     // "clienteKafkaListenerContainerFactory")
     @KafkaListener(topicPartitions = @TopicPartition(topic = "cliente", partitions = {
             "0" }), containerFactory = "clienteKafkaListenerContainerFactory")
-    public void orderListener(ClienteRecord clienteRecord) throws IOException, InterruptedException {
+    public void clienteListener(ClienteRecord clienteRecord) throws IOException, InterruptedException {
         log.info("Received Message Cliente: {}", clienteRecord.nome());
         log.info("Received Message Ação: {}", clienteRecord.acao());
 

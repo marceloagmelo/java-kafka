@@ -9,6 +9,8 @@ services:
       - "2181:2181"
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
+    networks:
+      - app_network
   kafka:
     image: bitnami/kafka:3.9.0
     hostname: kafka
@@ -18,11 +20,28 @@ services:
     environment:
       - KAFKA_BROKER_ID=1
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper
+    networks:
+      - app_network
+  kafka-ui:
+    image: provectuslabs/kafka-ui
+    container_name: kafka-ui
+    depends_on:
+      - kafka
+      - zookeeper
+    ports:
+      - "8081:8080"
+    restart: always
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=alura
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
+      - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
+    networks:
+      - app_network
   mysql:
     image: mysql:8.0.25
     platform: linux/amd64
@@ -36,6 +55,8 @@ services:
       MYSQL_ROOT_PASSWORD: "12345"
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     command: --character-set-server=utf8 --collation-server=utf8_general_ci --character-set-filesystem=utf8 --lower-case-table-names=0 --max_allowed_packet=100M
+    networks:
+      - app_network
   adminer:
     image: adminer
     hostname: adminer
@@ -43,3 +64,8 @@ services:
     restart: always
     ports:
       - 7070:8080
+    networks:
+      - app_network
+networks:
+  app_network:
+    name: app_network
