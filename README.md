@@ -1,8 +1,8 @@
-# Java com Kafka
+#  Java com Kafka
 
 Criação de um CRUD para poder criar, alterar e excluir clientes, utilizando um API Rest. O projeto também criar um producer e consumer em kafka para poder fazer executar o CRUD também.
 
-Utilizar:
+Utilizar: 
 
 - Banco de dados MySql.
 - Adminer para administrar o banco de dados.
@@ -11,9 +11,9 @@ Utilizar:
 - Receber o processo de cliente usando o Kafka (Consumer).
 - Criação da imagem com a aplicação rodando em container docker.
 
-## Regras do CRUD de cliente
+## Regras do CRUD de cliente  
 
-Criar:
+Criar:  
 
 - Se o cliente não existir, incluir.
 - Se o cliente existir, exibe mensagem "Cliente já existe!".
@@ -32,6 +32,7 @@ Listar:
 
 - Listar os clientes cadastrados.
 
+
 ## Containers
 
 Para rodar em containers executar o seguinte comando:
@@ -39,13 +40,12 @@ Para rodar em containers executar o seguinte comando:
 ```
 ./scripts/startContainers.sh
 ```
-
 Irão subir os containers e um de apoio:
 
 - Adminer: Aplicação web para administrar o banco de dados
 
 > http://localhost:7070
-
+  
     Servidor: mysql
     Usuário: root
     Senha: 12345
@@ -62,13 +62,12 @@ Para rodar em containers no kubernetes executar o seguinte comando:
 ```
 ./scripts/startKubernetes.sh
 ```
-
 Irão subir os containers e um de apoio:
 
 - Adminer: Aplicação web para administrar o banco de dados
 
 > http://javakafka.adminer.marceloagmelo.net
-
+  
     Servidor: mysql
     Usuário: root
     Senha: 12345
@@ -78,6 +77,7 @@ Irão subir os containers e um de apoio:
 
 > http://javakafka.kafkaui.marceloagmelo.net
 
+
 ## Observação
 
 Precisa atualizaro arquivo /etc/hosts com os seguintes dados:
@@ -86,7 +86,7 @@ Precisa atualizaro arquivo /etc/hosts com os seguintes dados:
 IP_CLUSTER javakafka.kafkaui.marceloagmelo.net javakafka.adminer.marceloagmelo.net javakafka.producer.marceloagmelo.net
 ```
 
-## _Serviços_
+## *Serviços*
 
 ## Cliente
 
@@ -124,7 +124,7 @@ URL: http://localhost:8080/clientes/{id}
 
 ```
 Method: GET
-URL: http://localhost:8080/clientes/listar
+URL: http://localhost:8080/clientes
 ```
 
 ## Mensageria
@@ -132,7 +132,6 @@ URL: http://localhost:8080/clientes/listar
 ### Enviar um processo de cliente
 
 #### Criar
-
 ```
 Method: POST
 URL: http://localhost:8080/clientes/send
@@ -144,7 +143,6 @@ Body (json):
 ```
 
 #### Alterar
-
 ```
 Method: POST
 URL: http://localhost:8080/clientes/send
@@ -157,7 +155,6 @@ Body (json):
 ```
 
 #### Excluir
-
 ```
 Method: POST
 URL: http://localhost:8080/clientes/send
@@ -169,34 +166,22 @@ Body (json):
 }
 
 ```
-
 ### Receber exclusão pela mensageria
 
 O serviço de mensageria ira ler as solicitações e irá executar as solicitações de atualização no banco de dados.
 
-## Scripts
+## Scripts  
 
-_startContainersParcial_: Sobe os seguintes containers para rodar localmente:
-
-- Zookeeper
-- Kafka
-- Mysql
-- Adminer
-
-_removeContainersParcial_: Derrubar os containers parciais
-
-_startContainers_: Sobe os seguintes containers para rodar localmente em containers docker:
+*startContainersParcial*: Sobe os seguintes containers para rodar localmente:
 
 - Zookeeper
 - Kafka
 - Mysql
 - Adminer
-- Producer
-- Consumer
 
-_removeContainers_: Derrubar os containers
+*removeContainersParcial*: Derrubar os containers parciais
 
-_publishKubernetes_: Sobe os seguintes containers para rodar no cluster kubernetes:
+*startContainers*: Sobe os seguintes containers para rodar localmente em containers docker:
 
 - Zookeeper
 - Kafka
@@ -205,7 +190,18 @@ _publishKubernetes_: Sobe os seguintes containers para rodar no cluster kubernet
 - Producer
 - Consumer
 
-_removeKubernetes_: Derrubar os containers no cluster kubernetes
+*removeContainers*: Derrubar os containers
+
+*publishKubernetes*: Sobe os seguintes containers para rodar no cluster kubernetes:
+
+- Zookeeper
+- Kafka
+- Mysql
+- Adminer
+- Producer
+- Consumer
+
+*removeKubernetes*: Derrubar os containers no cluster kubernetes
 
 ## Observação
 
@@ -214,5 +210,4 @@ O projeto também roda executando por intermédio de uma IDE, basta abrir o proj
 ```
 ./scripts/startContainersParcial.sh
 ```
-
 E executar as aplicações pela IDE e acessar os containers

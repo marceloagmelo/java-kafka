@@ -22,6 +22,7 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,6 +34,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RestController
 @RequestMapping("/clientes")
 @Tag(name = "open-api")
+@CrossOrigin
 public class ClienteController {
 
     @Autowired
@@ -47,7 +49,7 @@ public class ClienteController {
             @ApiResponse(responseCode = "422", description = "Dados de requisição inválida"),
             @ApiResponse(responseCode = "400", description = "Parametros inválidos"),
     })
-    @GetMapping("/listar")
+    @GetMapping("")
     public ResponseEntity<?> listar() throws IOException {
         try {
             ClienteListaResponse response = new ClienteListaResponse(ApplicationConstants.STATUS_OK,
