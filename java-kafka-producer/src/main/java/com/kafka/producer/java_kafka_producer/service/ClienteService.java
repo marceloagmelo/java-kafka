@@ -17,6 +17,18 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
+    public Cliente getCliente(Integer id) throws ClienteInexistenteException {
+
+        Cliente cliente = clienteRepository.findByIdCliente(id);
+
+        if (cliente == null) {
+            throw new ClienteInexistenteException();
+        }
+
+        return cliente;
+
+    }
+
     public Cliente getCliente(String nomeCliente) throws ClienteInexistenteException {
 
         Cliente cliente = clienteRepository.findByNomeCliente(nomeCliente);

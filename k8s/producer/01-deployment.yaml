@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: producer
-          image: marceloagmelo/java-kafka-producer:2.0.0.RELEASE
+          image: marceloagmelo/java-kafka-producer:3.0.0.RELEASE
           ports:
             - containerPort: 8080
           imagePullPolicy: Always

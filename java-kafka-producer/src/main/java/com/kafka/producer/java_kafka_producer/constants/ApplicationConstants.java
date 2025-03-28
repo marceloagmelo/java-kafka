@@ -9,6 +9,7 @@ public class ApplicationConstants {
     public static String MENSAGEM_CLIENTE_DELETADO_SUCESSO = "Cliente excluído com sucesso";
     public static String MENSAGEM_CLIENTE_LISTA_SUCESSO = "Cliente listagem com sucesso";
     public static String MENSAGEM_CLIENTE_ENVIADO_SUCESSO = "Envio de cliente enviado com sucesso";
+    public static String MENSAGEM_CLIENTE_RECUPERADO_SUCESSO = "Cliente recuperado com sucesso";
 
     public static String TOPIC_CLIENTE = "cliente";
 }
